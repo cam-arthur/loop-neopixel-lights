@@ -1,22 +1,22 @@
 import time
-#import board
-#import neopixel
+import board
+import neopixel
 maxLights = 50
-#pixels = neopixel.NeoPixel(board.D18, maxLights, brightness=1,pixel_order=neopixel.RGB)
+pixels = neopixel.NeoPixel(board.D18, maxLights, brightness=1,pixel_order=neopixel.RGB)
 maxLoops = 2
 
 def updateLights():
-    #pixels.show()
+    pixels.show()
     #pixels.write()
     print("Updating Lights")
 
 def ledOn():
-    #pixels.fill((255,255,255))
+    pixels.fill((255,255,255))
     updateLights()
     print("All LEDs On")
 
 def ledOff():
-    #pixels.fill((0,0,0))
+    pixels.fill((0,0,0))
     updateLights()
     print("All LEDs Off")
 
@@ -47,6 +47,7 @@ def rainbowCycle(wait):
         pixelIndex = (i * 256 // maxLights) + i
         output = wheel(pixelIndex & 255)
         print("Light number", i, "is showing the colour", output)
+        pixels[i] = output
         updateLights()
         time.sleep(wait)
 
